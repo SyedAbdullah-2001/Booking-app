@@ -1,4 +1,7 @@
+/* eslint-disable @typescript-eslint/type-annotation-spacing */
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-place-details',
@@ -6,10 +9,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./place-details.page.scss'],
 })
 export class PlaceDetailsPage implements OnInit {
+  constructor(private router: Router, private navctrl: NavController) {}
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  onBookPlace() {
+    // this.router.navigateByUrl('places/discover');
+    this.navctrl.navigateBack('/places/discover');
+    // this.navctrl.pop();
   }
-
 }

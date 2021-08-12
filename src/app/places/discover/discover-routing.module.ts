@@ -6,10 +6,13 @@ import { DiscoverPage } from './discover.page';
 const routes: Routes = [
   {
     path: '',
-    component: DiscoverPage,
     children: [
       {
-        path: 'place-details',
+        path: '',
+        component: DiscoverPage,
+      },
+      {
+        path: 'place-details/:id',
         loadChildren: () =>
           import('./place-details/place-details.module').then(
             (m) => m.PlaceDetailsPageModule
