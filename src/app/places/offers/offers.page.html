@@ -14,7 +14,7 @@
     <ion-row>
       <ion-col>
         <ion-list>
-          <ion-item *ngFor="let place of loadedPlaces " [routerLink]="['offer-bookings/'+ place.id ]" detail>
+          <ion-item *ngFor="let place of loadedPlaces" [routerLink]="['offer-bookings/'+ place.id ]" detail>
             <ion-thumbnail slot="start">
               <ion-img [src]="place.imageUrl"></ion-img>
             </ion-thumbnail>
