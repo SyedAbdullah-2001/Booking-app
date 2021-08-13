@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/type-annotation-spacing */
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Place } from '../place.model';
 import { PlacesService } from '../places.service';
 

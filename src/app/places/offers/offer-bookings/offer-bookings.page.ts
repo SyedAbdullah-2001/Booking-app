@@ -12,6 +12,7 @@ import { PlacesService } from '../../places.service';
 })
 export class OfferBookingsPage implements OnInit {
   place: Place;
+  placeId;
   constructor(
     private route: ActivatedRoute,
     private navCtrl: NavController,
@@ -19,12 +20,13 @@ export class OfferBookingsPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.route.paramMap.subscribe((paramMap) => {
-      if (!paramMap.has('placeId')) {
-        this.navCtrl.navigateBack('places/offers');
-        return;
-      }
-      this.place = this.placesService.getPlace(paramMap.get('placeId'));
-    });
+    this.placeId = this.route.snapshot.paramMap.get('placeId');
+    this.place = this.placesService.getPlace(this.placeId);
+    // this.route.paramMap.subscribe((paramMap) => {
+    //   if (!paramMap.has('placeId')) {
+    //     this.navCtrl.navigateBack('places/offers');
+    //     return;
+    //   }
+    // });
   }
 }

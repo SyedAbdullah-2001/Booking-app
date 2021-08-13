@@ -8,6 +8,7 @@ import { BookingsPageRoutingModule } from './bookings-routing.module';
 
 import { BookingsPage } from './bookings.page';
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -17,4 +18,4 @@ import { BookingsPage } from './bookings.page';
   ],
   declarations: [BookingsPage]
 })
-export class BookingsPageModule {}
+export class BookingsPageModule { }

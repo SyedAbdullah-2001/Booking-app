@@ -6,8 +6,20 @@ import { OfferBookingsPage } from './offer-bookings.page';
 const routes: Routes = [
   {
     path: '',
-    component: OfferBookingsPage
-  }
+    children: [
+      {
+        path: '',
+        component: OfferBookingsPage,
+      },
+      {
+        path: 'edit-offers',
+        loadChildren: () =>
+          import('../edit-offers/edit-offers.module').then(
+            (m) => m.EditOffersPageModule
+          ),
+      },
+    ],
+  },
 ];
 
 @NgModule({
