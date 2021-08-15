@@ -22,7 +22,7 @@ export class PlacesService {
       2999.99
     ),
     new Place(
-      'Makkah + Madinah',
+      'Makkah-Madinah',
       'Makkah / Madinah',
       '20 Days package',
       'https://travelforumrah.co.uk/blog/wp-content/uploads/2018/02/Virtues-of-Makkah-and-Madinah.jpg',

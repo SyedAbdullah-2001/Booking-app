@@ -16,13 +16,16 @@ import { PlacesService } from '../../places.service';
 export class PlaceDetailsPage implements OnInit {
   constructor(private route: ActivatedRoute, private navctrl: NavController, private placeService: PlacesService, private modalCtrl: ModalController) { }
   place: Place;
-  ngOnInit() { }
+  ngOnInit() {
+    let placeId = this.route.snapshot.paramMap.get('id');
+    this.place = this.placeService.getPlace(placeId);
+  }
 
   onBookPlace() {
     // this.router.navigateByUrl('places/discover');
     // this.navctrl.navigateBack('/places/discover');
     // this.navctrl.pop();
-
+    console.log(this.place)
     this.modalCtrl.create({
       component: CreateBookingComponent,
       componentProps: { selectedPlace: this.place }

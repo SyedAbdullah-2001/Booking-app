@@ -8,9 +8,11 @@ import { Place } from 'src/app/places/place.model';
 })
 export class CreateBookingComponent implements OnInit {
 
-  @Input() selectedPlace: Place;
+  @Input("selectedPlace") selectedPlace: Place;
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    console.log(this.selectedPlace);
+   }
 
 }
