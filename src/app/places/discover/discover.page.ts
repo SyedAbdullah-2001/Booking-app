@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/type-annotation-spacing */
 import { Component, OnInit } from '@angular/core';
+import { SegmentChangeEventDetail } from '@ionic/core';
 import { Place } from '../place.model';
 import { PlacesService } from '../places.service';
 
@@ -10,12 +11,15 @@ import { PlacesService } from '../places.service';
 })
 export class DiscoverPage implements OnInit {
   loadedPlaces: Place[];
-  constructor(private placesService: PlacesService) {}
+  constructor(private placesService: PlacesService) { }
 
   ngOnInit() {
     this.loadedPlaces = this.placesService.places;
   }
 
+  onFilterUpdate(event: any) {
+    console.log(event.detail);
+  }
   // navigateToDetail() {
   //   this.router.navigateByUrl('/places/discover/place-details');
   // }

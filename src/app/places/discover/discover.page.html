@@ -8,6 +8,11 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+  <ion-segment value="All" (ionChange)="onFilterUpdate($event)">
+    <ion-segment-button value="All"> All Places</ion-segment-button>
+    <ion-segment-button value="Bookable"> Bookable Places </ion-segment-button>
+
+  </ion-segment>
   <ion-grid>
     <ion-row>
       <ion-col class="ion-text-center">
@@ -35,8 +40,7 @@
     <ion-row>
       <ion-col>
         <ion-list>
-          <ion-item *ngFor="let place of loadedPlaces.slice(1)" [routerLink]="['place-details/' + place.id]"
-            detail>
+          <ion-item *ngFor="let place of loadedPlaces.slice(1)" [routerLink]="['place-details/' + place.id]" detail>
             <ion-thumbnail slot="start">
               <ion-img [src]="place.imageUrl"></ion-img>
             </ion-thumbnail>

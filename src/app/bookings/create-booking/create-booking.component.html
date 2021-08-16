@@ -3,9 +3,17 @@
     <ion-title>
       {{selectedPlace.title}}
     </ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)=onCancel()>
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <h1 class="ion-text-center"> {{selectedPlace.description}}</h1>
+  <p class="ion-text-center ion-padding">
+    {{selectedPlace.description}}<br>
+    <ion-button color="primary" (click)="onBookPlace()"> Book </ion-button>
+  </p>
 </ion-content>

@@ -1,4 +1,6 @@
+/* eslint-disable @angular-eslint/no-input-rename */
 import { Component, Input, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { Place } from 'src/app/places/place.model';
 
 @Component({
@@ -8,11 +10,16 @@ import { Place } from 'src/app/places/place.model';
 })
 export class CreateBookingComponent implements OnInit {
 
-  @Input("selectedPlace") selectedPlace: Place;
-  constructor() { }
+  @Input('selectedPlace') selectedPlace: Place;
+  constructor(private modalCtrl: ModalController) { }
 
   ngOnInit() {
-    console.log(this.selectedPlace);
-   }
-
+    // console.log(this.selectedPlace);
+  }
+  onCancel() {
+    this.modalCtrl.dismiss(null, 'Cancel');
+  }
+  onBookPlace() {
+    this.modalCtrl.dismiss({ message: 'This place is book' }, 'confirm');
+  }
 }

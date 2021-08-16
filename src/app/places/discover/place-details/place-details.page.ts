@@ -17,7 +17,7 @@ export class PlaceDetailsPage implements OnInit {
   constructor(private route: ActivatedRoute, private navctrl: NavController, private placeService: PlacesService, private modalCtrl: ModalController) { }
   place: Place;
   ngOnInit() {
-    let placeId = this.route.snapshot.paramMap.get('id');
+    const placeId = this.route.snapshot.paramMap.get('id');
     this.place = this.placeService.getPlace(placeId);
   }
 
@@ -25,12 +25,19 @@ export class PlaceDetailsPage implements OnInit {
     // this.router.navigateByUrl('places/discover');
     // this.navctrl.navigateBack('/places/discover');
     // this.navctrl.pop();
-    console.log(this.place)
+    console.log(this.place);
     this.modalCtrl.create({
       component: CreateBookingComponent,
       componentProps: { selectedPlace: this.place }
     }).then(modalEl => {
       modalEl.present();
-    });
+      return modalEl.onDidDismiss();
+    })
+      .then(resultData => {
+        console.log(resultData.data, resultData.role);
+        if (resultData.data === 'confirm') {
+          console.log('Booked');
+        }
+      });
   }
-}
+};

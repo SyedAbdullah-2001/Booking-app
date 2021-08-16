@@ -18,7 +18,9 @@ const routes: Routes = [
       {
         path: 'offers',
         loadChildren: () =>
-          import('./offers/offers.module').then((m) => m.OffersPageModule),
+          import('./offers/offers.module').then(
+            (m) => m.OffersPageModule
+          ),
       },
     ],
   },
@@ -28,4 +30,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class PlacesPageRoutingModule {}
+export class PlacesPageRoutingModule { }

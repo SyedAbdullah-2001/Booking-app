@@ -19,7 +19,7 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'edit-offers',
+        path: 'edit-offers/:offerId',
         loadChildren: () =>
           import('./edit-offers/edit-offers.module').then(
             (m) => m.EditOffersPageModule
@@ -40,4 +40,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class OffersPageRoutingModule {}
+export class OffersPageRoutingModule { }

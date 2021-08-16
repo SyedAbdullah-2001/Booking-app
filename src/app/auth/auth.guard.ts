@@ -29,14 +29,14 @@ export class AuthGuard implements CanLoad {
     }
     return this.authService.userIsAuthenticated;
   }
-  // canload(
-  //   route: ActivatedRouteSnapshot,
-  //   state: RouterStateSnapshot
-  // ):
-  //   | Observable<boolean | UrlTree>
-  //   | Promise<boolean | UrlTree>
-  //   | boolean
-  //   | UrlTree {
-  //   return true;
-  // }
+  canload(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ):
+    | Observable<boolean | UrlTree>
+    | Promise<boolean | UrlTree>
+    | boolean
+    | UrlTree {
+    return true;
+  }
 }
