@@ -17,7 +17,7 @@ export class OfferBookingsPage implements OnInit {
     private route: ActivatedRoute,
     private navCtrl: NavController,
     private placesService: PlacesService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.placeId = this.route.snapshot.paramMap.get('placeId');
