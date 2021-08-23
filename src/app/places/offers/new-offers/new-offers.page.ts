@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, MaxValidator, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
 import { PlacesService } from '../../places.service';
 
 @Component({
@@ -10,7 +11,11 @@ import { PlacesService } from '../../places.service';
 })
 export class NewOffersPage implements OnInit {
   form: FormGroup;
-  constructor(private placesService: PlacesService, private router: Router) { }
+  constructor(
+    private placesService: PlacesService,
+    private router: Router,
+    private loadingCtrl:LoadingController)
+    { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -40,15 +45,22 @@ export class NewOffersPage implements OnInit {
     if (!this.form.valid) {
       return;
     }
-    this.placesService.addPlace(
-      this.form.value.title,
-      this.form.value.description,
-      +this.form.value.price,
-      (this.form.value.dateFrom),
-      (this.form.value.dateTo)
-    );
-    this.form.reset();
-    this.router.navigate(['places/offers']);
+    this.loadingCtrl.create({
+      message: 'Creating place...'
+    }).then( loadingEl => {
+      loadingEl.present();
+      this.placesService.addPlace(
+        this.form.value.title,
+        this.form.value.description,
+        +this.form.value.price,
+        (this.form.value.dateFrom),
+        (this.form.value.dateTo)
+      ).subscribe(() => {
+        loadingEl.dismiss();
+        this.form.reset();
+        this.router.navigate(['places/offers']);
+      });
+    });
+   
   }
-
 }
