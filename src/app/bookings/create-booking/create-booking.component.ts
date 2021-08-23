@@ -1,5 +1,6 @@
 /* eslint-disable @angular-eslint/no-input-rename */
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { Place } from 'src/app/places/place.model';
 
@@ -11,6 +12,7 @@ import { Place } from 'src/app/places/place.model';
 export class CreateBookingComponent implements OnInit {
 
   @Input('selectedPlace') selectedPlace: Place;
+  @ViewChild('form', { static: true }) form: NgForm;
   constructor(private modalCtrl: ModalController) { }
 
   ngOnInit() {
@@ -20,6 +22,17 @@ export class CreateBookingComponent implements OnInit {
     this.modalCtrl.dismiss(null, 'Cancel');
   }
   onBookPlace() {
-    this.modalCtrl.dismiss({ message: 'This place is book' }, 'confirm');
+    if (!this.form.valid) {
+      return;
+    }
+    this.modalCtrl.dismiss({
+      bookingData: {
+        firstName: this.form.value['first-name'],
+        lastName: this.form.value['last-name'],
+        guestNumbers: this.form.value['guest-numbers'],
+        startDate: this.form.value['date-from'],
+        endDate: this.form.value['date-to']
+      }
+    }, 'confirm');
   }
 }
