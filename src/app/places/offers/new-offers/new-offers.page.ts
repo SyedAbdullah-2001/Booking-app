@@ -14,8 +14,7 @@ export class NewOffersPage implements OnInit {
   constructor(
     private placesService: PlacesService,
     private router: Router,
-    private loadingCtrl:LoadingController)
-    { }
+    private loadingCtrl: LoadingController) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -47,7 +46,7 @@ export class NewOffersPage implements OnInit {
     }
     this.loadingCtrl.create({
       message: 'Creating place...'
-    }).then( loadingEl => {
+    }).then(loadingEl => {
       loadingEl.present();
       this.placesService.addPlace(
         this.form.value.title,
@@ -61,6 +60,5 @@ export class NewOffersPage implements OnInit {
         this.router.navigate(['places/offers']);
       });
     });
-   
   }
 }

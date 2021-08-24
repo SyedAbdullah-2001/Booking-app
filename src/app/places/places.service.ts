@@ -65,8 +65,27 @@ export class PlacesService {
       this.authService.userId
     );
     // console.log(newPlace);
-    this.places.pipe(take(1), delay(5000), tap(places => {
-        this._places.next(places.concat(newPlace));
+    return this.places.pipe(take(1), delay(1500), tap(places => {
+      this._places.next(places.concat(newPlace));
+    })
+    );
+  }
+  updatePlace(placeId: string, title: string, description: string) {
+    return this.places.pipe(take(1), delay(1500), tap(places => {
+      const updatePlaceIndex = places.findIndex(pl => pl.id === placeId);
+      const updatedPlaces = [...places];
+      const oldPlace = updatedPlaces[updatePlaceIndex];
+      updatedPlaces[updatePlaceIndex] = new Place(
+        oldPlace.id,
+        title,
+        description,
+        oldPlace.imageUrl,
+        oldPlace.price,
+        oldPlace.availabelFrom,
+        oldPlace.availabelTo,
+        oldPlace.userId
+      );
+      this._places.next(updatedPlaces);
     }));
   }
 }
