@@ -19,7 +19,7 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'edit-offers/:offerId',
+        path: 'edit-offers/:placeId',
         loadChildren: () =>
           import('./edit-offers/edit-offers.module').then(
             (m) => m.EditOffersPageModule

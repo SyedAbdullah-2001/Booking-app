@@ -13,6 +13,7 @@ import { PlacesService } from '../places.service';
 })
 export class OffersPage implements OnInit, OnDestroy {
   offers: Place[];
+  isLoading = false;
   private placeSub: Subscription;
   constructor(private placesService: PlacesService, private router: Router, private navCtrl: NavController) { }
 
@@ -21,6 +22,12 @@ export class OffersPage implements OnInit, OnDestroy {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     this.placeSub = this.placesService.places.subscribe(Places => {
       this.offers = Places;
+    });
+  }
+  ionViewWillEnter() {
+    this.isLoading = true;
+    this.placesService.fetchPlaces().subscribe(() => {
+      this.isLoading = false;
     });
   }
   onEdit(offerId: string, slidingItem: IonItemSliding) {

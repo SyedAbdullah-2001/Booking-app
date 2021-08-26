@@ -12,7 +12,7 @@ import { PlacesService } from '../../places.service';
   styleUrls: ['./offer-bookings.page.scss'],
 })
 export class OfferBookingsPage implements OnInit, OnDestroy {
-  place: Place;
+  place: any;
   placeId;
   private placeSub: Subscription;
   constructor(
