@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-export class booking {
+export class Booking {
     constructor(
         public id: string,
         public placeId: string,

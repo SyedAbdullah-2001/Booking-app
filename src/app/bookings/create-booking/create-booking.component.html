@@ -57,9 +57,8 @@
         <ion-col size-sm="3" offset-sm="3">
           <ion-item>
             <ion-label position="floating">From </ion-label>
-            <ion-datetime displayFormat="MMM DD YYYY" pickerFormat="YY MMM DD"
-              [min]="selectedPlace.availabelFrom.toISOString()"ngModel
-              name="date-from" required #startingDateCtrl="ngModel">
+            <ion-datetime displayFormat="MMM DD YYYY" pickerFormat="YY MMM DD" ngModel name="date-from" required
+              #startingDateCtrl="ngModel">
             </ion-datetime>
           </ion-item>
         </ion-col>
@@ -68,8 +67,7 @@
         <ion-col size-sm="3">
           <ion-item>
             <ion-label position="floating">To</ion-label>
-            <ion-datetime displayFormat="MMM DD YYYY" pickerFormat="YY MMM DD" [min]="startingDateCtrl.value"
-               ngModel name="date-to" required>
+            <ion-datetime displayFormat="MMM DD YYYY" pickerFormat="YY MMM DD" ngModel name="date-to" required>
             </ion-datetime>
           </ion-item>
         </ion-col>

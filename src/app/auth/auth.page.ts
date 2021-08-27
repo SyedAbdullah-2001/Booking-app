@@ -5,6 +5,7 @@ import { LoadingController } from '@ionic/angular';
 import { from } from 'rxjs';
 import { AuthService } from './auth.service';
 
+
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.page.html',
@@ -43,6 +44,9 @@ export class AuthPage implements OnInit {
       // send a request to login server
     } else {
       // send a request to signup server
+      this.authService.signup(email, password).subscribe(resData => {
+        console.log(resData);
+      });
     }
   }
 }

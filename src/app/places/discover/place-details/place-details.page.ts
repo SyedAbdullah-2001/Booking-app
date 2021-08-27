@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/type-annotation-spacing */
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ActionSheetController, LoadingController, ModalController, NavController } from '@ionic/angular';
+import { ActionSheetController, AlertController, LoadingController, ModalController, NavController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { BookingService } from 'src/app/bookings/bookings.service';
@@ -26,23 +26,50 @@ export class PlaceDetailsPage implements OnInit, OnDestroy {
     private modalCtrl: ModalController,
     private actionSheetCtrl: ActionSheetController,
     private bookingService: BookingService,
-    private authService: AuthService
+    private authService: AuthService,
+    private alertCtrl: AlertController,
+    private router: Router
   ) { }
   place: any;
   isBookable = false;
+  isLoading = false;
   private placesub: Subscription;
   ngOnInit() {
+    this.isLoading = true;
     const placeId = this.route.snapshot.paramMap.get('id');
     this.placesub = this.placeService.getPlace(placeId)
       .subscribe(place => {
         this.place = place;
+        this.isLoading = false;
         this.isBookable = place.userId !== this.authService.userId;
+      }, error => {
+        this.alertCtrl.create({
+          header: 'An error',
+          message: 'Could not load place.',
+          buttons: [{
+            text: 'Okay',
+            handler: () => this.router.navigate(['/places/discover'])
+          }
+          ]
+        }).then(alertEl => alertEl.present());
       });
   }
   ngOnDestroy() {
-    if (this.placesub) {
-      this.placesub.unsubscribe();
-    }
+    // if (this.placesub) {
+    //   this.placesub.unsubscribe();
+    // }
+    this.route.paramMap.subscribe(paramMap => {
+      if (!paramMap.has('placeId')) {
+        this.navctrl.navigateBack('/places/discover');
+        return;
+      }
+      this.placesub = this.placeService
+        .getPlace(paramMap.get('placeId'))
+        .subscribe(place => {
+          this.place = place;
+          this.isBookable = place.userId !== this.authService.userId;
+        });
+    });
   }
 
   onBookPlace() {
